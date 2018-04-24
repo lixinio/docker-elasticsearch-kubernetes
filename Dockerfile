@@ -10,7 +10,7 @@ ENV MEMORY_LOCK false
 
 ENV ES_TMPDIR /tmp/es-plugins
 
-RUN mkdir $ES_TMPDIR && elasticsearch-plugin install ingest-geoip
+RUN mkdir $ES_TMPDIR && NODE_NAME=build elasticsearch-plugin install ingest-geoip
 
 # Override config, otherwise plug-in install will fail
 ADD config /elasticsearch/config
