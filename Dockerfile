@@ -8,7 +8,9 @@ ENV DISCOVERY_SERVICE elasticsearch-discovery
 # Kubernetes requires swap is turned off, so memory lock is redundant
 ENV MEMORY_LOCK false
 
-RUN elasticsearch-plugin install ingest-geoip
+ENV ES_TMPDIR /tmp/es-plugins
+
+RUN mkdir $ES_TMPDIR && elasticsearch-plugin install ingest-geoip
 
 # Override config, otherwise plug-in install will fail
 ADD config /elasticsearch/config
